@@ -40,6 +40,16 @@ module.exports = function(grunt) {
 					editorconfig: '.editorconfig'
 				}
 			}
+		},
+
+		pathlint: {
+			testing: {
+				src: 'tests/fixtures/**',
+				options: {
+					file: /^(_?[a-z0-9]|_)+\.(js)$/,
+					dir: /^(_?[a-z0-9]|_)+/
+				}
+			}
 		}
 	});
 
@@ -63,7 +73,6 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('default', [
 		'validate',
-		'test',
-		'build'
+		'test'
 	]);
 };
