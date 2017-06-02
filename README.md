@@ -1,4 +1,4 @@
-#grunt-pathlint
+# grunt-pathlint
 
 A Grunt task for checking pathnames.
 
