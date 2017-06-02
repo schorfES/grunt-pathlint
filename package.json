@@ -1,0 +1,44 @@
+{
+  "name": "grunt-pathlint",
+  "description": "A Grunt task for checking pathnames",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schorfES/grunt-pathlint.git"
+  },
+  "author": "Norman Rusch (nrmnrsh / schorfES)",
+  "contributors": [
+    {
+      "name": "Norman Rusch",
+      "url": "https://github.com/schorfES"
+    }
+  ],
+  "readmeFilename": "README.md",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt validate test"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/schorfES/grunt-pathlint/blob/master/LICENSE"
+    }
+  ],
+  "devDependencies": {
+    "grunt": ">=0.4.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-jscs": "^2.7.0",
+    "grunt-lintspaces": "^0.8.1"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  },
+  "keywords": [
+    "pathes",
+    "pathnames",
+    "filenames",
+    "lint",
+    "validation"
+  ]
+}
