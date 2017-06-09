@@ -1,3 +1,6 @@
+var path = require('path');
+
+
 module.exports = function(grunt) {
 
 	grunt.task.registerMultiTask('pathlint', 'validate all pathes', function() {
@@ -9,26 +12,30 @@ module.exports = function(grunt) {
 
 		this.files.forEach(function(file) {
 			total += file.src.length;
-			file.src.forEach(function(path) {
-				if (grunt.file.isFile(path)) {
-					if (!options.file.test(path.split('/').pop())) {
+			file.src.forEach(function(src) {
+				if (grunt.file.isFile(src)) {
+					if (!options.file.test(src.split(path.sep).pop())) {
 						fails.push(
-							'File "' + path.red +
+							'File "' + src.red +
 							'" does not match required name convention "' +
 							options.file.toString().green +
 							'"'
 						);
 					}
-				} else if (grunt.file.isDir(path)) {
-					if (!options.dir.test(path)) {
-						fails.push(
-							'Directory "' +
-							path.red +
-							'" does not match required name convention "' +
-							options.dir.toString().green +
-							'"'
-						);
-					}
+				} else if (grunt.file.isDir(src)) {
+					src.split(path.sep).forEach(function(name) {
+						if (!options.dir.test(name)) {
+							fails.push(
+								'Directory "' +
+								name.red +
+								'" in "' +
+								src.red +
+								'" does not match required name convention "' +
+								options.dir.toString().green +
+								'"'
+							);
+						}
+					});
 				}
 			});
 		});
