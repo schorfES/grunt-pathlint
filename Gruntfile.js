@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 				src: 'tests/fixtures/**',
 				options: {
 					file: /^(_?[a-z0-9]|_)+\.(js)$/,
-					dir: /^(_?[a-z0-9]|_)+/
+					dir: /^([a-z0-9]|_)+$/
 				}
 			}
 		}
