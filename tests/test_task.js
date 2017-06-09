@@ -13,12 +13,18 @@ function __test(test, expected) {
 		var lines = stdout.split(/\r?\n/);
 
 		expected.forEach(function(line) {
-			for (var index = 0; index < lines.length; index++) {
+			var index = 0;
 
+			for (; index < lines.length; index++) {
 				if (lines[index].indexOf(line) > -1) {
 					test.ok(true);
-					break;
+					return;
 				}
+			}
+
+			if (index === lines.length) {
+				test.ok(false, 'Could not find "' + line + '" in stdout.');
+				return;
 			}
 		});
 
@@ -39,13 +45,13 @@ exports.tests = {
 
 	dirs: function(test) {
 		__test(test, [
-			'Directory "tests/fixtures/invalid-path/" does not match required name convention "/^(_?[a-z0-9]|_)+/"'
+			'Directory "invalid-path" in "tests/fixtures/invalid-path" does not match required name convention "/^([a-z0-9]|_)+$/"'
 		]);
 	},
 
 	total: function(test) {
 		__test(test, [
-			'Warning: There are 4 incorrect in 9 pathnames found'
+			'Warning: There are 5 incorrect in 9 pathnames found'
 		]);
 	}
 };
