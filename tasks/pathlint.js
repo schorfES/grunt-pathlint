@@ -1,11 +1,17 @@
-var path = require('path');
+var
+	path = require('path'),
+	DEFAULTS = {
+		file: /^.+$/,
+		dir: /^.+$/
+	}
+;
 
 
 module.exports = function(grunt) {
 
 	grunt.task.registerMultiTask('pathlint', 'validate all pathes', function() {
 		var
-			options = this.options({file: /^.+$/, dir: /^.+$/}),
+			options = this.options(DEFAULTS),
 			fails = [],
 			total = 0
 		;
