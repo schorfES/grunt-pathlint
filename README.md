@@ -29,17 +29,47 @@ specifies the tasks. Each task takes sources and options as parameters.
 
 ### sources ```src```
 
-This sets the path of the files to be checked.
+This sets the path of the files and directories to be checked in this task.
 
 ## Options
 
-### file
+### file option
 
-A regular expression for a file name in a path matched by `src`.
+A regular expression for a file name in a path matched by `src`. This validates
+only the full filename and not the full path of the file.
 
-### dir
+Default is `/^.+$/` which allows all names.
 
-A regular expression for a directory name in a path matched by `src`.
+### dir option
+
+A regular expression for a directory name in a path matched by `src`. A full
+path of a directory will be split and validated by it's containing directory
+names. For example the path `foo/bar/baz/` will be split into `foo`, `bar` and
+`baz`. Each of these sections will be validated by this regular expression. It's
+not required to add any path seperators into the regular expression.
+
+Default is `/^.+$/` which allows all names.
+
+## Example
+
+```javascript
+	pathlint {
+		js: {
+			src: ['js/src/**/*'],
+			options: {
+				file: /^([a-zA-Z0-9])+\.(js)$/,
+				dir: /^([a-z0-9])+$/
+			}
+		},
+		scss: {
+			src: ['scss/**/*'],
+			options: {
+				file: /^(_?[a-z0-9]|-)+\.(scss)$/
+				// Do not test for dirs here, so all pathes are valid...
+			}
+		}
+	}
+```
 
 ## Contribution
 
